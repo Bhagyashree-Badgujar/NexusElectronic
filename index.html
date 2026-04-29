@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXUS | Premium Electronics</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="logo" onclick="showPage('home')">
+        <span class="logo-icon">⬡</span>
+        <span>NEXUS</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#" onclick="showPage('home')" class="nav-link active" data-page="home">Home</a></li>
+        <li><a href="#" onclick="showPage('shop')" class="nav-link" data-page="shop">Shop</a></li>
+        <li><a href="#" onclick="showPage('about')" class="nav-link" data-page="about">About</a></li>
+        <li><a href="#" onclick="showPage('contact')" class="nav-link" data-page="contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="btn-icon" id="searchToggle" title="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button class="btn-icon" onclick="handleUserIconClick()" title="Profile/Login" id="userIconBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </button>
+        <button class="btn-icon" onclick="openCart()" title="Cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+    <!-- Search Bar -->
+    <div class="search-bar" id="searchBar">
+      <div class="search-inner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="searchInput" placeholder="Search premium electronics..." autocomplete="off">
+        <button id="searchClose">✕</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main id="appMain">
+    
+    <!-- HOME PAGE -->
+    <section id="page-home" class="page active">
+      <div class="hero">
+        <div class="hero-content">
+          <div class="hero-badge">NEW ARRIVALS 2026</div>
+          <h1 class="hero-title">Elevate Your <span class="gradient-text">Tech</span> Experience</h1>
+          <p class="hero-sub">Discover the world's most premium gadgets. Cutting-edge performance meets stunning design.</p>
+          <div class="hero-actions" style="display:flex; gap:16px;">
+            <button class="btn-primary" onclick="showPage('shop')">Shop Collection</button>
+            <button class="btn-ghost" onclick="showPage('about')">Learn More</button>
+          </div>
+          <div class="hero-stats">
+            <div class="stat"><span class="stat-num">24k+</span><span class="stat-label">Happy Clients</span></div>
+            <div class="stat"><span class="stat-num">1.4k</span><span class="stat-label">Products</span></div>
+            <div class="stat"><span class="stat-num">4.9/5</span><span class="stat-label">Average Rating</span></div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <!-- Image injected by JS -->
+        </div>
+      </div>
+
+      <div class="trust-bar">
+        <div class="trust-item"><span class="trust-icon">🚚</span> Free Global Shipping</div>
+        <div class="trust-item"><span class="trust-icon">💳</span> Secure Checkouts</div>
+        <div class="trust-item"><span class="trust-icon">🛡️</span> 2-Year Warranty</div>
+        <div class="trust-item"><span class="trust-icon">💬</span> 24/7 Expert Support</div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <h2>Featured <span class="gradient-text">Collection</span></h2>
+          <p>Hand-picked excellence, engineered for you.</p>
+        </div>
+        <div class="products-grid" id="featuredGrid"></div>
+      </div>
+
+      <div class="promo-section">
+        <div class="promo-text">
+          <h2><span class="gradient-text">Nexus Premium</span> Sound System</h2>
+          <p>Experience studio-quality audio with active noise cancellation and 40-hour battery life. Early bird discount active.</p>
+          <button class="btn-primary" onclick="showPage('shop')">Pre-order Now</button>
+        </div>
+        <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?q=80&w=600&auto=format&fit=crop" alt="Premium Headset" style="width: 400px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);" />
+      </div>
+    </section>
+
+    <!-- SHOP PAGE -->
+    <section id="page-shop" class="page">
+      <div class="shop-hero">
+        <h1 style="font-size:3rem;">All <span class="gradient-text">Products</span></h1>
+        <p style="color:var(--text-muted); font-size:1.2rem;">Browse our entire collection</p>
+      </div>
+      <div class="shop-layout">
+        <aside class="shop-sidebar">
+          <div class="sidebar-section">
+            <h3>Categories</h3>
+            <ul class="filter-list">
+              <li class="active">All Products</li>
+              <li>Laptops & PCs</li>
+              <li>Smartphones</li>
+              <li>Audio</li>
+              <li>Wearables</li>
+            </ul>
+          </div>
+          <div class="sidebar-section">
+            <h3>Price Range</h3>
+            <div style="display:flex; gap:10px; margin-top:20px;">
+              <input type="number" placeholder="Min" class="form-group" style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--border); background:transparent; color:#fff;" />
+              <input type="number" placeholder="Max" class="form-group" style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--border); background:transparent; color:#fff;" />
+            </div>
+            <button class="btn-ghost" style="width:100%; margin-top:16px;">Filter</button>
+          </div>
+        </aside>
+        <div class="shop-main">
+          <div class="shop-toolbar">
+            <span style="color:var(--text-muted);">Showing all 6 products</span>
+            <select style="background:var(--bg-card); border:1px solid var(--border); color:#fff; padding:8px 16px; border-radius:var(--radius-sm); outline:none;">
+              <option>Sort by Featured</option>
+              <option>Price: Low to High</option>
+              <option>Price: High to Low</option>
+            </select>
+          </div>
+          <div class="products-grid" id="shopGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHECKOUT PAGE -->
+    <section id="page-checkout" class="page">
+      <h1 style="text-align:center; margin-bottom:40px; font-size: 2.5rem;">Secure <span class="gradient-text">Checkout</span></h1>
+      <div class="checkout-wrap">
+        
+        <div class="checkout-body">
+          <!-- Step 1: Shipping -->
+          <div class="checkout-step" id="checkoutStep1">
+            <h2>1. Shipping Details</h2>
+            <form id="shippingForm" class="checkout-form">
+              <div class="form-row">
+                <div class="form-group"><label>First Name</label><input type="text" required /></div>
+                <div class="form-group"><label>Last Name</label><input type="text" required /></div>
+              </div>
+              <div class="form-group"><label>Email Address</label><input type="email" required /></div>
+              <div class="form-group"><label>Address</label><input type="text" required /></div>
+              <div class="form-row">
+                <div class="form-group"><label>City</label><input type="text" required /></div>
+                <div class="form-group"><label>ZIP Code</label><input type="text" required /></div>
+              </div>
+              <button type="submit" class="btn-primary btn-full" style="margin-top: 16px;">Continue to Payment</button>
+            </form>
+          </div>
+
+          <!-- Step 2: Payment -->
+          <div class="checkout-step hidden" id="checkoutStep2">
+            <h2>2. Payment Information</h2>
+            <div class="pm-methods">
+              <div class="pm-btn active" id="pm-card" onclick="selectPaymentMethod('card')">💳 Credit Card</div>
+              <div class="pm-btn" id="pm-paypal" onclick="selectPaymentMethod('paypal')">🅿 PayPal</div>
+            </div>
+            <form id="paymentForm" class="checkout-form">
+              <div class="form-group"><label>Cardholder Name</label><input type="text" required placeholder="John Doe" /></div>
+              <div class="form-group"><label>Card Number</label><input type="text" required placeholder="0000 0000 0000 0000" maxlength="19" /></div>
+              <div class="form-row">
+                <div class="form-group"><label>Expiry (MM/YY)</label><input type="text" required placeholder="12/26" /></div>
+                <div class="form-group"><label>CVC</label><input type="password" required placeholder="•••" maxlength="4" /></div>
+              </div>
+              <button type="button" class="btn-ghost" style="margin-top:20px; margin-right:10px;" onclick="document.getElementById('checkoutStep2').classList.add('hidden'); document.getElementById('checkoutStep1').classList.remove('hidden');">Back</button>
+              <button type="submit" class="btn-primary" style="margin-top:20px;">Place securely Order</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="order-summary-box">
+          <h3 style="margin-bottom:20px; font-size:1.5rem;">Order Summary</h3>
+          <p style="color:var(--text-muted); margin-bottom: 20px;">To edit your items, please go back to your cart.</p>
+          <div style="border-top: 1px solid var(--border); display:flex; justify-content:space-between; padding-top:20px; font-weight:700; font-size:1.2rem;">
+             <span>Estimated Total</span>
+             <span class="gradient-text">Calculated securely via Cart.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUCCESS PAGE -->
+    <section id="page-success" class="page" style="text-align:center; padding: 100px 20px;">
+      <div style="font-size:5rem; color:var(--success); margin-bottom:20px;">✔</div>
+      <h1 style="font-size:3rem; margin-bottom:20px;">Payment <span class="gradient-text">Successful</span></h1>
+      <p style="color:var(--text-muted); font-size:1.2rem; margin-bottom:40px;">Thank you for your order! You will receive a confirmation email shortly.</p>
+      <button class="btn-primary" onclick="showPage('home')">Return to Home</button>
+    </section>
+    
+    <!-- PROFILE PAGE -->
+    <section id="page-profile" class="page">
+      <div class="profile-header">
+        <h1 style="font-size:3rem;">My <span class="gradient-text">Profile</span></h1>
+        <p style="color:var(--text-muted); font-size:1.2rem;">Welcome back, <span id="profileName">User</span></p>
+        <button class="btn-ghost btn-sm" style="margin-top: 16px;" onclick="logout()">Log Out</button>
+      </div>
+      
+      <div class="orders-section" style="margin-top: 40px;">
+        <h2>Order <span class="gradient-text">History</span></h2>
+        <div id="ordersList" class="orders-list">
+          <!-- Orders injected here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT PAGE -->
+    <section id="page-about" class="page" style="text-align:center; padding: 80px 20px;">
+      <h1 style="font-size:3.5rem; margin-bottom:20px;">About <span class="gradient-text">NEXUS</span></h1>
+      <p style="color:var(--text-muted); font-size:1.2rem; max-width:800px; margin: 0 auto;">We believe in curating technology that seamlessly blends into your lifestyle while pushing the boundaries of performance.</p>
+    </section>
+
+    <!-- CONTACT PAGE -->
+    <section id="page-contact" class="page" style="text-align:center; padding: 80px 20px;">
+      <h1 style="font-size:3.5rem; margin-bottom:20px;"><span class="gradient-text">Contact</span> Us</h1>
+      <p style="color:var(--text-muted); font-size:1.2rem; max-width:800px; margin: 0 auto;">Reach out to our expert support 24/7 at support@nexus.store</p>
+    </section>
+  </main>
+
+  <!-- LOGIN MODAL -->
+  <div class="modal-overlay" id="loginOverlay" onclick="closeLoginModal()"></div>
+  <div class="modal" id="loginModal">
+    <div class="modal-header">
+      <h2>Welcome to <span class="gradient-text">NEXUS</span></h2>
+      <button class="modal-close" onclick="closeLoginModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <form id="loginForm" class="checkout-form">
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="loginEmail" required placeholder="you@example.com" />
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="loginPassword" required placeholder="••••••••" />
+        </div>
+        <button type="submit" class="btn-primary btn-full" style="margin-top: 10px;">Log In</button>
+        <p style="text-align:center; margin-top:16px; color:var(--text-muted); font-size:0.9rem;">
+          Don't have an account? Create Account
+          
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- CART OVERLAY & DRAWER -->
+  <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <button class="cart-close" onclick="closeCart()">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer" id="cartFooter" style="display:none;">
+      <div class="ct-row"><span>Subtotal</span><span id="cartSubtotal">$0.00</span></div>
+      <div class="ct-row"><span>Shipping</span><span>Free</span></div>
+      <div class="ct-total ct-row"><span style="color:#fff;">Total</span><span id="cartTotal" class="gradient-text">$0.00</span></div>
+      <div class="cart-actions">
+        <button class="btn-primary btn-full" onclick="startCheckout()">Proceed to Checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- LOADER -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+    <h3 style="color:#fff;">Processing Payment...</h3>
+    <p style="color:var(--text-muted);">Please do not close this window.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <a href="#" class="logo" style="margin-bottom:20px;"><span class="logo-icon">⬡</span><span>NEXUS</span></a>
+        <p style="color:var(--text-muted); font-size:0.95rem;">Premium tech aesthetics redefined. Your source for next-gen innovation.</p>
+      </div>
+      <div class="footer-col footer-links">
+        <h4>Products</h4>
+        <ul><li><a href="#">Laptops</a></li><li><a href="#">Audio</a></li><li><a href="#">Wearables</a></li></ul>
+      </div>
+      <div class="footer-col footer-links">
+        <h4>Company</h4>
+        <ul><li><a href="#">About Us</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li></ul>
+      </div>
+      <div class="footer-col footer-links">
+        <h4>Support</h4>
+        <ul><li><a href="#">Contact</a></li><li><a href="#">Returns</a></li><li><a href="#">Shipping</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 NEXUS Tech. All rights reserved.</span>
+      <span>Mockup App</span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
